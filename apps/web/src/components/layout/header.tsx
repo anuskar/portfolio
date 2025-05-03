@@ -4,12 +4,12 @@ import { Logo } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
-
-import Link from '../link'
+import Link from 'next/link'
 
 import MobileNav from './mobile-nav'
 import Navbar from './navbar'
 import ThemeSwitcher from './theme-switcher'
+import { SITE_NAME } from '@/lib/constants'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -52,10 +52,9 @@ const Header = () => {
       </a>
       <Link
         href='/'
-        className='flex items-center justify-center gap-1'
-        aria-label='Home'
+        aria-label={`${SITE_NAME}, Back to homepage`}
       >
-        <Logo width={28} height={28} aria-hidden='true' />
+        <Logo src="/favicon/android-chrome-192x192.png" width={28} height={28} aria-hidden='true' />
       </Link>
       <div className='flex items-center gap-2'>
         <Navbar />

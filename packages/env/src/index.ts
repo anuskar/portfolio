@@ -32,10 +32,6 @@ export const env = createEnv({
         WAKATIME_API_KEY: z.string().min(1)
       }
       : {}),
-
-    DATABASE_URL: z.string().url(),
-    UPSTASH_REDIS_REST_URL: z.string().url(),
-    UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
     REACT_SCAN_MONITOR_API_KEY: z.string().optional()
   },
   client: {
