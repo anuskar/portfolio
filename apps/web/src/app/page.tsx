@@ -3,7 +3,7 @@ import type { WebSite, WithContext } from 'schema-dts'
 
 import AboutMe from '@/components/home/about-me'
 import Hero from '@/components/home/hero'
-import SelectedProjects from '@/components/home/selected-projects'
+import AllProjects from '@/components/home/selected-projects'
 import {
     SITE_GITHUB_URL,
     SITE_KEYWORDS,
@@ -53,7 +53,7 @@ const Page = () => {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
             <Hero />
-            <SelectedProjects />
+            <AllProjects />
             <AboutMe />
         </>
     )

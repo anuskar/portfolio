@@ -13,7 +13,6 @@ import Link from '../link'
 
 // Hardcoded navigation links
 const NAV_LINKS = [
-  { href: '/projects', key: 'projects', label: 'Projects', icon: <FlameIcon className='size-3.5' /> },
   { href: '/about', key: 'about', label: 'About', icon: <UserCircleIcon className='size-3.5' /> }
 ]
 

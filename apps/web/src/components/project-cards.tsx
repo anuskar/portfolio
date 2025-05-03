@@ -28,14 +28,15 @@ const ProjectCard = (props: ProjectCardProps) => {
 
   return (
     <Link href={`/projects/${slug}`} className='shadow-feature-card group rounded-xl px-2 py-4'>
-      <BlurImage
-        src={`/images/projects/${slug}/cover.png`}
-        width={1280}
-        height={832}
-        imageClassName='group-hover:scale-105'
-        alt={name}
-        className='rounded-lg'
-      />
+      <div className='relative aspect-[1280/832] w-full overflow-hidden rounded-lg bg-zinc-900'>
+        <BlurImage
+          fill
+          src={`/images/projects/${slug}/cover.png`}
+          className=''
+          imageClassName='h-full w-full object-contain'
+          alt={name}
+        />
+      </div>
       <div className='flex-1 px-2 py-4'>
         <div className='space-y-2'>
           <h2 className='text-2xl font-semibold'>{name}</h2>

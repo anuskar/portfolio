@@ -7,7 +7,6 @@ import Link from '../link'
 
 // Hardcoded navigation links instead of using HEADER_LINKS
 const NAV_LINKS = [
-  { href: '/projects', key: 'projects', label: 'Projects' },
   { href: '/about', key: 'about', label: 'About' }
 ]
 

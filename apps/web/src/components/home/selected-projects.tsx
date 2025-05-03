@@ -8,6 +8,7 @@ import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
 
 import Link from '../link'
+import ProjectCards from '../project-cards'
 
 const variants = {
   initial: {
@@ -24,29 +25,63 @@ type CardProps = {
   project: Project
 }
 
-const SelectedProjects = () => {
+const AllProjects = () => {
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
   const filteredProjects = allProjects.filter(
-    (project) => project.selected && project.locale === 'en'
+    (project) => project.locale === 'en'
   )
 
   return (
-
-      <div className='my-8 flex items-center justify-center'>
-        <Link
-          href='/projects'
-          className={cn(
-            buttonVariants({
-              variant: 'outline'
-            }),
-            'rounded-xl'
-          )}
-        >
-          View All Projects
-        </Link>
-      </div>
+    <motion.div
+      initial='initial'
+      animate={isInView ? 'animate' : 'initial'}
+      variants={variants}
+      ref={projectsRef}
+      transition={{
+        duration: 0.5
+      }}
+      className='relative mt-24 mb-12'
+    >
+      <motion.h2
+        className='text-center text-3xl font-semibold'
+        initial={{
+          y: 30,
+          opacity: 0
+        }}
+        animate={{
+          y: 0,
+          opacity: 1
+        }}
+        transition={{
+          duration: 0.3
+        }}
+      >
+        Projects
+      </motion.h2>
+      <motion.div
+        className='mt-12 flex flex-col items-center'
+        initial={{
+          y: 40,
+          opacity: 0
+        }}
+        animate={{
+          y: 0,
+          opacity: 1
+        }}
+        transition={{
+          duration: 0.3
+        }}
+      >
+        <p className="mb-8 text-center text-neutral-700 dark:text-neutral-300 w-full px-4 md:px-0">
+          All of my projects in one place
+        </p>
+        <div className='w-full'>
+          <ProjectCards projects={filteredProjects} />
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
-export default SelectedProjects
+export default AllProjects
