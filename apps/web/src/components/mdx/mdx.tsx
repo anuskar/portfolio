@@ -8,6 +8,7 @@ import Heading from './heading'
 import ItemGrid from './item-grid'
 import LinkCard from './link-card'
 import Logo from './logo'
+import Scrabble from './scrabble'
 import Table from './table'
 import TreeView from './tree-view'
 import Video from './video'
@@ -52,7 +53,8 @@ const components = {
   LinkCard,
   Logo,
   TreeView,
-  Kbd
+  Kbd,
+  Scrabble
 }
 
 const Mdx = (props: MdxProps) => {

@@ -5,7 +5,6 @@
  *
  * Modified by: tszhong0411
  */
-import { useTranslations } from '@tszhong0411/i18n/client'
 import { cn } from '@tszhong0411/utils'
 import { LinkIcon } from 'lucide-react'
 
@@ -17,14 +16,13 @@ type HeadingProps<T extends Types> = Omit<React.ComponentProps<T>, 'as'> & {
 const Heading = <T extends Types = 'h1'>(props: HeadingProps<T>) => {
   const { as, className, children, id, ...rest } = props
   const Component = as ?? 'h1'
-  const t = useTranslations()
 
   return (
     <Component className={cn('scroll-m-32', className)} id={id} {...rest}>
       <a href={`#${id}`} className='group'>
         {children}
         <LinkIcon
-          aria-label={t('mdx.link-to-section')}
+          aria-label="Link to section"
           className='text-muted-foreground ml-2 inline size-4 opacity-0 transition-opacity group-hover:opacity-100'
         />
       </a>

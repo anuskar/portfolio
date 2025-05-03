@@ -1,6 +1,5 @@
 'use client'
 
-import { useLocale, useTranslations } from '@tszhong0411/i18n/client'
 import { BlurImage, buttonVariants } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { allProjects, type Project } from 'content-collections'
@@ -28,10 +27,8 @@ type CardProps = {
 const SelectedProjects = () => {
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
-  const t = useTranslations()
-  const locale = useLocale()
   const filteredProjects = allProjects.filter(
-    (project) => project.selected && project.locale === locale
+    (project) => project.selected && project.locale === 'en'
   )
 
   return (
@@ -59,7 +56,7 @@ const SelectedProjects = () => {
           duration: 0.3
         }}
       >
-        {t('homepage.selectedProjects.title')}
+        Selected Projects
       </motion.h2>
       <motion.div
         className='mt-12 grid gap-4 md:grid-cols-2'
@@ -89,7 +86,7 @@ const SelectedProjects = () => {
             'rounded-xl'
           )}
         >
-          {t('homepage.selectedProjects.more')}
+          View All Projects
         </Link>
       </div>
     </motion.div>
@@ -99,7 +96,6 @@ const SelectedProjects = () => {
 const Card = (props: CardProps) => {
   const { project } = props
   const { slug, name, description } = project
-  const t = useTranslations()
 
   return (
     <Link
@@ -110,7 +106,7 @@ const Card = (props: CardProps) => {
       <div className='flex items-center justify-between p-4'>
         <div className='flex items-center gap-3'>
           <LightbulbIcon className='size-[18px]' />
-          <h2>{t('homepage.selectedProjects.card')}</h2>
+          <h2>Featured Project</h2>
         </div>
         <ArrowUpRightIcon className='size-[18px] opacity-0 transition-opacity group-hover:opacity-100' />
       </div>

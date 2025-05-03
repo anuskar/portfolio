@@ -1,0 +1,92 @@
+---
+name: E*Trade Chatbot
+description: Streamlining Support for Millions
+techstack:
+  - Kore.ai
+  - Python
+  - JavaScript
+  - Angular
+selected: true
+---
+
+<Image src="/images/projects/etrade-chatbot/Etrade.png" width={150} height={75} alt="The E*Trade chatbot handled common questions instantly, reducing wait times." />
+
+## The Problem: High Call Volumes, Frustrated Users
+E*Trade's contact center was flooded with routine questions (e.g., "How do I reset my password?"). Users waited on hold for simple tasks, and the company needed to cut costs without sacrificing service. Our challenge: create a self-service tool that felt helpful, not robotic.
+
+<Image src="/images/projects/etrade-chatbot/Etrade2.png" width={600} height={400} alt="Shifting simple requests from phones to chat." />
+
+## What We Built
+A virtual assistant (powered by Kore.ai) that handles 300+ common financial queries, from account updates to trade confirmations. Key features:
+- 24/7 live chat: Instant answers without waiting.
+- ADA compliance: Screen-reader-friendly design and keyboard navigation.
+- Smarter conversations: Improved natural language processing (NLP) to understand slang or typos (e.g., "How 2 change my email?").
+- Knowledge graph updates: Added answers to recurring questions users asked but weren't covered.
+
+Our accessibility features were a core focus, ensuring that every user could navigate the tool regardless of ability. We implemented high-contrast options, keyboard shortcuts, and ensured all elements were properly labeled for screen readers.
+
+<Image src="/images/projects/etrade-chatbot/UI_templates_support.png" width={400} height={600} alt="Ensuring every user could navigate the tool easily." />
+
+## How It Works
+- User asks a question: The chatbot checks the knowledge graph for matches.
+- NLP interprets intent: Even if phrasing is unusual, the system identifies the core request.
+- Fallback to human agents: Complex issues get routed to live support seamlessly.
+
+<Image src="/images/projects/etrade-chatbot/Fallback_Flow.png" width={600} height={400} alt="Balancing automation with human help when needed." />
+
+## Behind the Scenes
+Building this required:
+- Collaboration with annotators: To label thousands of user queries for training the NLP model.
+- ADA audits: Working with accessibility experts to fix contrast ratios, alt-text, and keyboard controls.
+- Gap analysis: Reviewing chat logs to find questions the bot couldn't answer, then updating the content (e.g., adding FAQs about tax forms).
+
+The biggest hurdle? Making financial jargon (like "cost basis" or "settlement date") sound simple. We rewrote 70+ answers with plain language and examples.
+
+<Image src="/images/projects/etrade-chatbot/metrics.png" width={600} height={400} alt="Filling content gaps based on real user data." />
+
+## Behind the Scenes: UX, Copy, and Collaboration
+### 1. Crafting the Chat Personality
+- Tone: Avoided jargon (e.g., "settlement date" became "the day your trade finalizes").
+- Error handling: Replaced "Invalid input" with "Let me try that again—could you rephrase?"
+- Testing: Ran A/B tests on response styles (formal vs. casual) — users preferred short, upbeat replies.
+
+We found that humanizing the bot's responses significantly improved user satisfaction. By creating a conversational tone that recognized frustration and acknowledged mistakes, users were more likely to continue using the chatbot instead of calling customer service.
+
+<Image src="/images/projects/etrade-chatbot/Etrade.png" width={400} height={600} alt="Rewriting answers to be clear and approachable." />
+
+### 2. Designing the Interface
+- Wireframes: Mocked chat bubbles, button placements, and loading states in Figma.
+- Accessibility: Worked with visually impaired users to test screen-reader flow.
+- Micro-interactions: Added subtle animations (e.g., typing indicators) to reduce frustration.
+
+Interface iterations focused on visual clarity and reducing cognitive load. Each UI element was designed to guide users toward successful interactions and provide clear paths for complex requests.
+
+<Image src="/images/projects/etrade-chatbot/UI_templates_support.png" width={400} height={600} alt="Iterating on UI elements for clarity." />
+
+### 3. Building the Frontend
+- Kore.ai integration: Built reusable modules for common tasks (password resets, balance checks).
+- Knowledge graph gaps: Added 200+ missing FAQs by analyzing chat logs (e.g., "How do I update my W-9?").
+- Fallback logic: Designed "Sorry, I'm still learning!" messages with quick exit buttons to human agents.
+
+When the chatbot couldn't resolve an issue, we ensured a smooth handoff to live agents. Context was preserved, eliminating the need for customers to repeat information.
+
+<Image src="/images/projects/etrade-chatbot/Live_Agent_support.png" width={400} height={600} alt="Mapping workflows to keep interactions smooth." />
+
+## What We Learned
+- Users prefer "quick fixes": 80% of chats were resolved without transferring to humans.
+- Language evolves: The bot needed monthly updates to keep up with slang.
+- Accessibility isn't optional: Testing with screen-reader users revealed flaws we'd missed.
+
+<Image src="/images/projects/etrade-chatbot/metrics.png" width={600} height={400} alt="Fewer calls meant faster service for complex issues." />
+
+## Results
+- Faster resolutions: Average chat time: 1.3 minutes (vs. 8+ minutes on calls).
+- Inclusive design: Achieved ADA compliance, making support accessible to users with disabilities.
+- Reduced calls: 20% drop in contact center volume within the first month.
+- Higher satisfaction: 88% of users rated the chatbot "easy to use."
+- Faster resolutions: 90% of password resets happened in under 2 minutes via chat.
+
+## Project Role
+Software Engineer (Backend Integration, UI Requirements, Accessibility Lead)
+
+This project taught me that good tech doesn't just solve business problems—it removes everyday frustrations. Sometimes, the most impactful work is invisible: like a chatbot that lets people skip the hold music. 

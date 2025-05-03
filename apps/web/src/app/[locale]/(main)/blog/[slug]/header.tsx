@@ -1,44 +1,15 @@
 'use client'
 
-import NumberFlow from '@number-flow/react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useTranslations } from '@tszhong0411/i18n/client'
 import { BlurImage } from '@tszhong0411/ui'
-import { useEffect, useRef } from 'react'
 
 import ImageZoom from '@/components/image-zoom'
 import Link from '@/components/link'
 import { usePostContext } from '@/contexts/post'
 import { useFormattedDate } from '@/hooks/use-formatted-date'
-import { useTRPC } from '@/trpc/client'
 
 const Header = () => {
   const { date, title, slug } = usePostContext()
   const formattedDate = useFormattedDate(date)
-  const trpc = useTRPC()
-  const queryClient = useQueryClient()
-  const t = useTranslations()
-
-  const incrementMutation = useMutation(
-    trpc.views.increment.mutationOptions({
-      onSettled: () =>
-        queryClient.invalidateQueries({
-          queryKey: trpc.views.get.queryKey({ slug })
-        })
-    })
-  )
-
-  const viewsCountQuery = useQuery(trpc.views.get.queryOptions({ slug }))
-  const commentsCountQuery = useQuery(trpc.comments.getTotalCommentsCount.queryOptions({ slug }))
-
-  const incremented = useRef(false)
-
-  useEffect(() => {
-    if (!incremented.current) {
-      incrementMutation.mutate({ slug })
-      incremented.current = true
-    }
-  }, [incrementMutation, slug])
 
   return (
     <div className='space-y-16 py-16'>
@@ -46,39 +17,23 @@ const Header = () => {
         <h1 className='bg-linear-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text text-center text-4xl font-bold text-transparent md:text-5xl md:leading-[64px] dark:from-white dark:via-white/90 dark:to-white/70'>
           {title}
         </h1>
-        <div className='grid grid-cols-2 text-sm max-md:gap-4 md:grid-cols-4'>
+        <div className='grid grid-cols-2 text-sm max-md:gap-4 md:grid-cols-2'>
           <div className='space-y-1 md:mx-auto'>
-            <div className='text-muted-foreground'>{t('blog.header.written-by')}</div>
+            <div className='text-muted-foreground'>Written by</div>
             <Link href='https://github.com/tszhong0411' className='flex items-center gap-2'>
               <BlurImage
-                src='/images/avatar.png'
+                src='/images/profile.png'
                 className='rounded-full'
-                width={24}
-                height={24}
-                alt='Nelson Lai'
+                width={48}
+                height={48}
+                alt='Hong'
               />
-              Nelson Lai
+              Hong
             </Link>
           </div>
           <div className='space-y-1 md:mx-auto'>
-            <div className='text-muted-foreground'>{t('blog.header.published-on')}</div>
+            <div className='text-muted-foreground'>Published on</div>
             <div>{formattedDate}</div>
-          </div>
-          <div className='space-y-1 md:mx-auto'>
-            <div className='text-muted-foreground'>{t('blog.header.views')}</div>
-            {viewsCountQuery.status === 'pending' ? '--' : null}
-            {viewsCountQuery.status === 'error' ? t('common.error') : null}
-            {viewsCountQuery.status === 'success' ? (
-              <NumberFlow value={viewsCountQuery.data.views} data-testid='view-count' />
-            ) : null}
-          </div>
-          <div className='space-y-1 md:mx-auto'>
-            <div className='text-muted-foreground'>{t('blog.header.comments')}</div>
-            {commentsCountQuery.status === 'pending' ? '--' : null}
-            {commentsCountQuery.status === 'error' ? t('common.error') : null}
-            {commentsCountQuery.status === 'success' ? (
-              <NumberFlow value={commentsCountQuery.data.comments} data-testid='comment-count' />
-            ) : null}
           </div>
         </div>
       </div>

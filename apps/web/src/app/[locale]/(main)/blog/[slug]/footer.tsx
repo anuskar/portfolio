@@ -1,6 +1,5 @@
 'use client'
 
-import { useTranslations } from '@tszhong0411/i18n/client'
 import { linkVariants } from '@tszhong0411/ui'
 
 import Link from '@/components/link'
@@ -12,17 +11,15 @@ const editURL = (slug: string) =>
 
 const Footer = () => {
   const { slug, modifiedTime } = usePostContext()
-  const t = useTranslations()
-
   const formattedDate = useFormattedDate(modifiedTime)
 
   return (
     <div className='my-8 flex w-full items-center justify-between py-4 text-sm'>
       <Link href={editURL(slug)} className={linkVariants({ variant: 'muted' })}>
-        {t('blog.footer.edit-on-github')}
+        Edit on GitHub
       </Link>
       <div className='text-muted-foreground'>
-        {t('blog.footer.last-updated', { date: formattedDate })}
+        Last updated on {formattedDate}
       </div>
     </div>
   )

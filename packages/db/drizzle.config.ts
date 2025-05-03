@@ -1,14 +1,6 @@
-import type { Config } from 'drizzle-kit'
-
-import { env } from '@tszhong0411/env'
+// This is a placeholder file
+// We're now using a JSON file-based approach instead of drizzle-orm/PostgreSQL
 
 export default {
-  dialect: 'postgresql',
-  schema: './src/schema/index.ts',
-  dbCredentials: {
-    url: env.DATABASE_URL
-  },
-  out: './src/migrations',
-  strict: true,
-  verbose: true
-} satisfies Config
+    note: 'This project now uses a JSON file-based storage instead of PostgreSQL'
+}

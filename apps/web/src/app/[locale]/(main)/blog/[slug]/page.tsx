@@ -1,20 +1,16 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { Article, WithContext } from 'schema-dts'
 
-import { flags } from '@tszhong0411/env'
 import { setRequestLocale } from '@tszhong0411/i18n/server'
 import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
 
-import Comment from '@/components/comment'
 import Mdx from '@/components/mdx'
 import { SITE_NAME, SITE_URL } from '@/lib/constants'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
 import Footer from './footer'
 import Header from './header'
-import LikeButton from './like-button'
 import MobileTableOfContents from './mobile-table-of-contents'
 import ProgressBar from './progress-bar'
 import Providers from './providers'
@@ -147,7 +143,6 @@ const Page = async (props: PageProps) => {
           <aside className='lg:min-w-[270px] lg:max-w-[270px]'>
             <div className='sticky top-24'>
               {toc.length > 0 ? <TableOfContents toc={toc} /> : null}
-              {flags.likeButton ? <LikeButton slug={slug} /> : null}
             </div>
           </aside>
         </div>
@@ -156,12 +151,6 @@ const Page = async (props: PageProps) => {
         {toc.length > 0 ? <MobileTableOfContents toc={toc} /> : null}
         <Footer />
       </Providers>
-
-      {flags.comment ? (
-        <Suspense>
-          <Comment slug={slug} />
-        </Suspense>
-      ) : null}
     </>
   )
 }

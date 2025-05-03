@@ -1,7 +1,5 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-import { useLocale, useTranslations } from '@tszhong0411/i18n/client'
 import { BlurImage, buttonVariants } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { allPosts, type Post } from 'content-collections'
@@ -10,7 +8,7 @@ import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
 
 import { useFormattedDate } from '@/hooks/use-formatted-date'
-import { useTRPC } from '@/trpc/client'
+import { useParams } from 'next/navigation'
 
 import Link from '../link'
 
@@ -28,13 +26,13 @@ const variants = {
 const LatestArticles = () => {
   const projectsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(projectsRef, { once: true, margin: '-100px' })
-  const t = useTranslations()
-  const locale = useLocale()
+  const { locale = 'en' } = useParams() as { locale?: string }
+
   const filteredPosts = allPosts
+    .filter((post) => post.locale === locale)
     .toSorted((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
-    .filter((post) => post.locale === locale)
     .slice(0, 2)
 
   return (
@@ -62,7 +60,7 @@ const LatestArticles = () => {
           duration: 0.3
         }}
       >
-        {t('homepage.latest-articles.title')}
+        Latest Articles
       </motion.h2>
       <motion.div
         className='mt-12 grid gap-4 md:grid-cols-2'
@@ -92,7 +90,7 @@ const LatestArticles = () => {
             'rounded-xl'
           )}
         >
-          {t('homepage.latest-articles.more')}
+          View All Articles
         </Link>
       </div>
     </motion.div>
@@ -107,18 +105,13 @@ const Card = (props: CardProps) => {
   const { post } = props
   const { slug, title, summary, date } = post
   const formattedDate = useFormattedDate(date)
-  const trpc = useTRPC()
-  const t = useTranslations()
-
-  const viewsQuery = useQuery(trpc.views.get.queryOptions({ slug }))
-  const likesQuery = useQuery(trpc.likes.get.queryOptions({ slug }))
 
   return (
     <Link href={`/blog/${slug}`} className='shadow-feature-card group relative rounded-xl p-2'>
       <div className='flex items-center justify-between p-4'>
         <div className='flex items-center gap-3'>
           <PencilIcon className='size-[18px]' />
-          <h2>{t('homepage.latest-articles.card')}</h2>
+          <h2>Latest Article</h2>
         </div>
         <ArrowUpRightIcon className='size-[18px] opacity-0 transition-opacity group-hover:opacity-100' />
       </div>
@@ -131,19 +124,6 @@ const Card = (props: CardProps) => {
       />
       <div className='flex items-center justify-between gap-2 px-2 pt-4 text-sm text-zinc-500'>
         {formattedDate}
-        <div className='flex gap-2'>
-          {likesQuery.status === 'pending' ? '--' : null}
-          {likesQuery.status === 'error' ? t('common.error') : null}
-          {likesQuery.status === 'success' ? (
-            <div>{t('common.likes', { count: likesQuery.data.likes })}</div>
-          ) : null}
-          <div>&middot;</div>
-          {viewsQuery.status === 'pending' ? '--' : null}
-          {viewsQuery.status === 'error' ? t('common.error') : null}
-          {viewsQuery.status === 'success' ? (
-            <div>{t('common.views', { count: viewsQuery.data.views })}</div>
-          ) : null}
-        </div>
       </div>
       <div className='flex flex-col px-2 py-4 transition-transform ease-out group-hover:translate-x-0.5'>
         <h3 className='text-2xl font-semibold'>{title}</h3>

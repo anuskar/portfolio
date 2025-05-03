@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   manifest: '/favicon/site.webmanifest',
   twitter: {
-    title: 'Nelson Lai',
+    title: 'Anuska Rungta',
     card: 'summary_large_image',
     site: '@tszhong0411',
     creator: '@tszhong0411',

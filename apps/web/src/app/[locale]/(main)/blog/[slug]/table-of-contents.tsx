@@ -2,7 +2,6 @@
 
 import type { TOC } from '@tszhong0411/mdx-plugins'
 
-import { useTranslations } from '@tszhong0411/i18n/client'
 import { useRouter } from '@tszhong0411/i18n/routing'
 import { SegmentGroup, SegmentGroupItem } from '@tszhong0411/ui'
 
@@ -18,12 +17,11 @@ const TableOfContents = (props: TableOfContentsProps) => {
     toc.map((item) => item.url),
     { rootMargin: '0% 0% -80% 0%' }
   )
-  const t = useTranslations()
   const router = useRouter()
 
   return (
     <div className='hidden pl-4 lg:block'>
-      <div className='mb-4'>{t('blog.on-this-page')}</div>
+      <div className='mb-4'>On this page</div>
       <SegmentGroup
         orientation='vertical'
         value={activeId}

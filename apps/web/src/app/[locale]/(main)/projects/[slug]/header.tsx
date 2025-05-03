@@ -2,7 +2,6 @@
 
 import type { Project } from 'content-collections'
 
-import { useTranslations } from '@tszhong0411/i18n/client'
 import { buttonVariants } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { ArrowUpRightIcon } from 'lucide-react'
@@ -26,9 +25,8 @@ type HeaderProps = Project
 
 const Header = (props: HeaderProps) => {
   const { name, description, homepage, github } = props
-  const t = useTranslations()
 
-  const repo = github.split('/').pop()
+  const repo = github?.split('/')?.pop()
 
   return (
     <div className='space-y-8 pt-10'>
@@ -50,16 +48,19 @@ const Header = (props: HeaderProps) => {
       >
         {homepage ? (
           <Link href={homepage} className={cn(buttonVariants(), 'group')}>
-            {t('projects.visit-website')}
+            Visit Website
             <ArrowUpRightIcon className='ml-2 size-5 transition-transform group-hover:-rotate-12' />
           </Link>
         ) : null}
-        <Link href={github} className={cn(buttonVariants(), 'group')}>
-          {GITHUB_USERNAME}/{repo}
-          <ArrowUpRightIcon className='ml-2 size-5 transition-transform group-hover:-rotate-12' />
-        </Link>
+        {github && (
+          <Link href={github} className={cn(buttonVariants(), 'group')}>
+            {GITHUB_USERNAME}/{repo}
+            <ArrowUpRightIcon className='ml-2 size-5 transition-transform group-hover:-rotate-12' />
+          </Link>
+        )}
       </motion.div>
     </div>
   )
 }
+
 export default Header

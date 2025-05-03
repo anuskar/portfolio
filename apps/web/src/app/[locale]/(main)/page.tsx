@@ -1,13 +1,8 @@
 import type { Metadata } from 'next'
 import type { WebSite, WithContext } from 'schema-dts'
 
-import { i18n } from '@tszhong0411/i18n/config'
-import { getTranslations, setRequestLocale } from '@tszhong0411/i18n/server'
-
 import AboutMe from '@/components/home/about-me'
-import GetInTouch from '@/components/home/get-in-touch'
 import Hero from '@/components/home/hero'
-import LatestArticles from '@/components/home/latest-articles'
 import SelectedProjects from '@/components/home/selected-projects'
 import {
   SITE_FACEBOOK_URL,
@@ -16,56 +11,37 @@ import {
   SITE_KEYWORDS,
   SITE_NAME,
   SITE_URL,
-  SITE_X_URL,
   SITE_YOUTUBE_URL
 } from '@/lib/constants'
-import { getLocalizedPath } from '@/utils/get-localized-path'
 
-type PageProps = {
-  params: Promise<{
-    locale: string
-  }>
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
-
-export const generateStaticParams = (): Array<{ locale: string }> => {
-  return i18n.locales.map((locale) => ({ locale }))
-}
-
-export const generateMetadata = async (props: PageProps): Promise<Metadata> => {
-  const { locale } = await props.params
-
+export const generateMetadata = async (): Promise<Metadata> => {
   return {
     alternates: {
-      canonical: getLocalizedPath({ slug: '', locale })
+      canonical: SITE_URL
     }
   }
 }
 
-const Page = async (props: PageProps) => {
-  const { locale } = await props.params
-  setRequestLocale(locale)
-  const t = await getTranslations('metadata')
-
-  const url = `${SITE_URL}${getLocalizedPath({ slug: '', locale })}`
+const Page = () => {
+  const url = SITE_URL;
 
   const jsonLd: WithContext<WebSite> = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: t('site-title'),
-    description: t('site-description'),
+    name: SITE_NAME,
+    description: "Hong's personal website",
     url,
     author: {
       '@type': 'Person',
       name: SITE_NAME,
       url: SITE_URL,
-      sameAs: [SITE_FACEBOOK_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL]
+      sameAs: [SITE_FACEBOOK_URL, SITE_INSTAGRAM_URL, SITE_GITHUB_URL, SITE_YOUTUBE_URL]
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': SITE_URL
     },
-    inLanguage: locale,
+    inLanguage: 'en',
     copyrightYear: new Date().getFullYear(),
     keywords: SITE_KEYWORDS,
     dateCreated: '2020-12-05',
@@ -79,10 +55,8 @@ const Page = async (props: PageProps) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Hero />
-      <SelectedProjects />
       <AboutMe />
-      <LatestArticles />
-      <GetInTouch />
+      <SelectedProjects />
     </>
   )
 }

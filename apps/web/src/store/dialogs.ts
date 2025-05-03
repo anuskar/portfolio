@@ -1,11 +1,7 @@
 import { create } from 'zustand'
 
 type DialogsStore = {
-  isSignInOpen: boolean
-  setIsSignInOpen: (value: boolean) => void
+  // Empty store for now, but keeping the structure for future dialogs
 }
 
-export const useDialogsStore = create<DialogsStore>((set) => ({
-  isSignInOpen: false,
-  setIsSignInOpen: (isSignInOpen) => set({ isSignInOpen })
-}))
+export const useDialogsStore = create<DialogsStore>(() => ({}))

@@ -1,21 +1,23 @@
 'use client'
 
-import { useTranslations } from '@tszhong0411/i18n/client'
-import { usePathname } from '@tszhong0411/i18n/routing'
+import { usePathname } from 'next/navigation'
 import { cn } from '@tszhong0411/utils'
-
-import { HEADER_LINKS } from '@/config/links'
 
 import Link from '../link'
 
+// Hardcoded navigation links instead of using HEADER_LINKS
+const NAV_LINKS = [
+  { href: '/projects', key: 'projects', label: 'Projects' },
+  { href: '/about', key: 'about', label: 'About' }
+]
+
 const Navbar = () => {
   const pathname = usePathname()
-  const t = useTranslations()
 
   return (
     <nav className='hidden md:block'>
       <ul className='flex gap-2'>
-        {HEADER_LINKS.map((link) => {
+        {NAV_LINKS.map((link) => {
           const isActive = link.href === pathname
 
           return (
@@ -27,7 +29,7 @@ const Navbar = () => {
                 })}
                 href={link.href}
               >
-                {t(`layout.${link.key}`)}
+                {link.label}
               </Link>
               {isActive ? (
                 <>

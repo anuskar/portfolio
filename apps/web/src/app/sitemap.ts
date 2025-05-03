@@ -10,7 +10,6 @@ const sitemap = (): MetadataRoute.Sitemap => {
   const routes = [
     '',
     '/blog',
-    '/guestbook',
     '/projects',
     '/dashboard',
     ...new Set(allPages.map((page) => `/${page.slug}`)),

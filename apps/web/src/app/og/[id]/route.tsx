@@ -1,7 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { db, eq, posts } from '@tszhong0411/db'
 import { getErrorMessage } from '@tszhong0411/utils'
 import { allPosts } from 'content-collections'
 import { ImageResponse } from 'next/og'
@@ -42,14 +41,6 @@ export const GET = async (_: Request, props: OGRouteProps) => {
     const roboto = fs.readFileSync(
       path.join(process.cwd(), 'src/app/og/[id]/RobotoCondensed-Bold.ttf')
     )
-
-    const post = await db
-      .select({
-        views: posts.views,
-        likes: posts.likes
-      })
-      .from(posts)
-      .where(eq(posts.slug, id))
 
     const textColor = 'hsl(0 0% 90%)'
 
@@ -95,20 +86,6 @@ export const GET = async (_: Request, props: OGRouteProps) => {
               }}
             >
               {title}
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 24,
-                gap: 16,
-                color: textColor
-              }}
-            >
-              <span>{post[0]?.likes ?? 0} likes</span>
-              <span>·</span>
-              <span>{post[0]?.views ?? 0} views</span>
             </div>
           </div>
           <div

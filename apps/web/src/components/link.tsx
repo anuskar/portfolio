@@ -1,4 +1,4 @@
-import { Link as LocalizedLink } from '@tszhong0411/i18n/routing'
+import NextLink from 'next/link'
 
 type LinkProps = React.ComponentProps<'a'>
 
@@ -18,9 +18,9 @@ const Link = (props: LinkProps) => {
   }
 
   return (
-    <LocalizedLink href={href} {...rest}>
+    <NextLink href={href} {...rest}>
       {children}
-    </LocalizedLink>
+    </NextLink>
   )
 }
 

@@ -3,7 +3,6 @@ import { Link } from '@tszhong0411/ui'
 import { HEADER_LINKS } from '@/config/links'
 
 import MobileNav from './mobile-nav'
-import Search from './search'
 import ThemeToggle from './theme-toggle'
 
 const Header = () => {
@@ -26,7 +25,6 @@ const Header = () => {
           </nav>
         </div>
         <div className='flex items-center gap-1 sm:gap-3'>
-          <Search />
           <ThemeToggle />
         </div>
       </div>

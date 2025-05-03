@@ -1,28 +1,31 @@
 'use client'
 
-import { useTranslations } from '@tszhong0411/i18n/client'
 import { BlurImage } from '@tszhong0411/ui'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
 const TEXTS = [
   {
-    key: 'amazing',
+    key: 'thoughtful',
+    text: 'thoughtful',
     className:
       'bg-clip-text text-center text-transparent bg-linear-to-r from-[#ff1835] to-[#ffc900]'
   },
   {
-    key: 'stunning',
+    key: 'organized',
+    text: 'organized',
     className:
       'bg-clip-text text-center text-transparent bg-linear-to-r from-[#0077ff] to-[#00e7df]'
   },
   {
-    key: 'fantastic',
+    key: 'innovative',
+    text: 'innovative',
     className:
       'bg-clip-text text-center text-transparent bg-linear-to-r from-[#7f00de] to-[#ff007f]'
   },
   {
-    key: 'attractive',
+    key: 'intelligent',
+    text: 'intelligent',
     className:
       'bg-clip-text text-center text-transparent bg-linear-to-r from-[#2ecc70] to-[#1ca085]'
   }
@@ -47,7 +50,6 @@ const variants = {
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const t = useTranslations()
 
   useEffect(() => {
     const timer = setInterval(
@@ -71,7 +73,7 @@ const Hero = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ ease: 'easeOut' }}
             >
-              {t('homepage.hero.title-top')}
+              Hi, I'm Anuska
             </motion.div>
             <motion.div
               initial={{ x: 30, opacity: 0 }}
@@ -84,7 +86,7 @@ const Hero = () => {
                 key='title-middle-left'
                 className='leading-[30px] sm:leading-[45px]'
               >
-                {t('homepage.hero.title-middle-left')}
+                I build
               </motion.div>
               <div className='relative overflow-hidden'>
                 <AnimatePresence mode='popLayout'>
@@ -101,7 +103,7 @@ const Hero = () => {
                     }}
                     className='inline-flex items-center justify-center leading-[30px] sm:leading-[45px]'
                   >
-                    <span className={textItem.className}>{t(`homepage.hero.${textItem.key}`)}</span>
+                    <span className={textItem.className}>{textItem.text}</span>
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -110,7 +112,7 @@ const Hero = () => {
                 key='title-middle-right'
                 className='leading-[30px] sm:leading-[45px]'
               >
-                {t('homepage.hero.title-middle-right')}
+                products
               </motion.div>
             </motion.div>
             <motion.div
@@ -118,7 +120,7 @@ const Hero = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ ease: 'easeOut' }}
             >
-              {t('homepage.hero.title-bottom')}
+              with a perfect blend of AI and Frontend expertise.
             </motion.div>
           </h1>
           <motion.div
@@ -127,11 +129,11 @@ const Hero = () => {
             transition={{ ease: 'easeOut' }}
             className='text-muted-foreground text-sm'
           >
-            {t('homepage.hero.location-timezone')}
+            Type A Product Manager • AI & Frontend Developer
           </motion.div>
         </div>
         <motion.div
-          className='relative hidden size-28 md:block'
+          className='relative hidden size-56 md:block'
           initial={{
             scale: 0
           }}
@@ -143,11 +145,11 @@ const Hero = () => {
           }}
         >
           <BlurImage
-            src='/images/avatar.png'
+            src='/images/profile.png'
             className='rounded-full'
-            width={112}
-            height={112}
-            alt='Nelson Lai'
+            width={328}
+            height={328}
+            alt='Anuska'
             lazy={false}
           />
           <div className='bg-linear-to-tl absolute inset-0 -z-10 from-purple-700 to-orange-700 opacity-50 blur-2xl' />

@@ -1,33 +1,33 @@
-import { type DateTimeFormatOptions, useFormatter } from '@tszhong0411/i18n/client'
 import dayjs from 'dayjs'
 
 type Options = {
   relative?: boolean
-  formatOptions?: DateTimeFormatOptions
+  format?: string
 }
 
 export const useFormattedDate = (date: Date | string, options: Options = {}) => {
   const {
     relative = false,
-    formatOptions = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    }
+    format = 'MMM D, YYYY'
   } = options
 
-  const format = useFormatter()
   const now = new Date()
-
   const convertedDate = typeof date === 'string' ? new Date(date) : date
 
   if (relative) {
     const weeksDiff = dayjs().diff(date, 'week')
 
-    return Math.abs(weeksDiff) > 1
-      ? format.dateTime(convertedDate, formatOptions)
-      : format.relativeTime(convertedDate, now)
+    if (Math.abs(weeksDiff) > 1) {
+      return dayjs(convertedDate).format(format)
+    } else {
+      const diff = dayjs(convertedDate).diff(now, 'day')
+      if (diff === 0) return 'Today'
+      if (diff === 1) return 'Tomorrow'
+      if (diff === -1) return 'Yesterday'
+      if (diff > 0) return `${diff} days from now`
+      return `${Math.abs(diff)} days ago`
+    }
   } else {
-    return format.dateTime(convertedDate, formatOptions)
+    return dayjs(convertedDate).format(format)
   }
 }

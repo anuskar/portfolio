@@ -1,17 +1,30 @@
-import { relations, sql } from 'drizzle-orm'
-import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+// Simple type definition for our posts schema
+export type PostRecord = {
+  slug: string;
+  views: number;
+  createdAt: string;
+}
 
-import { comments } from './comments'
+// This is a placeholder object that our db.ts will use to identify the posts "table"
+export const posts = {
+  tableName: 'posts'
+}
 
-export const posts = pgTable('post', {
-  createdAt: timestamp('created_at')
-    .notNull()
-    .default(sql`CURRENT_TIMESTAMP(3)`),
-  slug: text('slug').primaryKey(),
-  likes: integer('likes').notNull().default(0),
-  views: integer('views').notNull().default(0)
-})
+// Helper function to match slug with a pattern (like postgres "like" operator)
+export const like = (field: any, pattern: string) => {
+  return (post: PostRecord) => {
+    // Convert SQL LIKE pattern to regex
+    const regexPattern = pattern
+      .replace(/%/g, '.*')
+      .replace(/_/g, '.')
 
-export const postsRelations = relations(posts, ({ many }) => ({
-  comments: many(comments)
-}))
+    const regex = new RegExp(`^${regexPattern}$`)
+    return regex.test(post.slug)
+  }
+}
+
+// Helper function for equality comparison
+export const eq = (field: any, value: any) => {
+  return (post: PostRecord) => post.slug === value
+}
+

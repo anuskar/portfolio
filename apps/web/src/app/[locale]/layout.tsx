@@ -2,47 +2,29 @@ import type { Metadata, Viewport } from 'next'
 
 import '@/styles/globals.css'
 
-import { flags } from '@tszhong0411/env'
-import { hasLocale, NextIntlClientProvider } from '@tszhong0411/i18n/client'
-import { i18n } from '@tszhong0411/i18n/config'
-import { routing } from '@tszhong0411/i18n/routing'
-import { getTranslations, setRequestLocale } from '@tszhong0411/i18n/server'
 import { cn } from '@tszhong0411/utils'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { notFound } from 'next/navigation'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 import Analytics from '@/components/analytics'
 import Hello from '@/components/hello'
-import SignInDialog from '@/components/sign-in-dialog'
+import Providers from '@/app/providers'
 import { SITE_KEYWORDS, SITE_NAME, SITE_URL } from '@/lib/constants'
-
-import Providers from '../providers'
 
 type LayoutProps = {
   children: React.ReactNode
-  params: Promise<{
-    locale: string
-  }>
 }
 
-export const generateStaticParams = (): Array<{ locale: string }> => {
-  return i18n.locales.map((locale) => ({ locale }))
-}
-
-export const generateMetadata = async (props: LayoutProps): Promise<Metadata> => {
-  const { locale } = await props.params
-  const t = await getTranslations({ locale, namespace: 'metadata' })
-
+export const generateMetadata = async (): Promise<Metadata> => {
   return {
     metadataBase: new URL(SITE_URL),
     title: {
-      default: t('site-title'),
-      template: `%s | ${t('site-title')}`
+      default: SITE_NAME,
+      template: `%s | ${SITE_NAME}`
     },
-    description: t('site-description'),
+    description: "Hong's personal website",
     robots: {
       index: true,
       follow: true,
@@ -58,7 +40,7 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
     twitter: {
       card: 'summary_large_image',
       title: SITE_NAME,
-      description: t('site-description'),
+      description: "Hong's personal website",
       site: '@tszhong0411',
       siteId: '1152256803746377730',
       creator: '@tszhong0411',
@@ -68,7 +50,7 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
           url: '/images/og.png',
           width: 1200,
           height: 630,
-          alt: t('site-description')
+          alt: "Hong's personal website"
         }
       ]
     },
@@ -77,16 +59,16 @@ export const generateMetadata = async (props: LayoutProps): Promise<Metadata> =>
     openGraph: {
       url: SITE_URL,
       type: 'website',
-      title: t('site-title'),
-      siteName: t('site-title'),
-      description: t('site-description'),
-      locale,
+      title: SITE_NAME,
+      siteName: SITE_NAME,
+      description: "Hong's personal website",
+      locale: 'en',
       images: [
         {
           url: '/images/og.png',
           width: 1200,
           height: 630,
-          alt: t('site-description'),
+          alt: "Hong's personal website",
           type: 'image/png'
         }
       ]
@@ -126,34 +108,22 @@ export const viewport: Viewport = {
   ]
 }
 
-const Layout = async (props: LayoutProps) => {
+const Layout = (props: LayoutProps) => {
   const { children } = props
-  const { locale } = await props.params
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound()
-  }
-
-  setRequestLocale(locale)
 
   return (
     <html
-      lang={locale}
+      lang="en"
       className={cn(GeistSans.variable, GeistMono.variable)}
       suppressHydrationWarning
     >
       <body className='relative flex min-h-screen flex-col'>
         <NuqsAdapter>
+          <SpeedInsights />
           <Providers>
-            <NextIntlClientProvider>
-              <Hello />
-              {children}
-              {flags.analytics ? <Analytics /> : null}
-              <SignInDialog />
-            </NextIntlClientProvider>
+            {children}
           </Providers>
         </NuqsAdapter>
-        <SpeedInsights />
       </body>
     </html>
   )
