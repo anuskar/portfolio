@@ -147,7 +147,7 @@ export const Scrabble = ({
         <div className="my-10 relative w-full">
             {/* Toast notification */}
             {showToast && (
-                <div className="fixed top-5 right-5 z-50 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-lg animate-bounce">
+                <div className="fixed top-5 right-5 z-50 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-lg animate-bounce dark:bg-green-900 dark:border-green-700 dark:text-green-100">
                     <div className="flex items-center">
                         <div className="py-1">
                             <p className="font-bold">🎉 YOU SHOULD DEFINITELY HIRE ME! 🎉</p>
@@ -169,10 +169,10 @@ export const Scrabble = ({
                                     w-10 h-10 flex items-center justify-center
                                     border-2 uppercase font-bold text-lg cursor-pointer transition-colors duration-200
                                     rounded
-                                    ${letter ? 'bg-white border-blue-500 text-blue-700' : 'bg-transparent border-dashed border-gray-400'}
-                                    ${isCorrect ? '!bg-green-100 !border-green-500 !text-green-700' : ''}
-                                    ${letter && letter === phraseWithSpaces[index] ? '!border-green-500' : ''}
-                                    ${letter && letter !== phraseWithSpaces[index] ? '!border-red-500' : ''}
+                                    ${letter ? 'bg-white border-blue-500 text-blue-700 dark:bg-gray-800 dark:border-blue-400 dark:text-blue-300' : 'bg-transparent border-dashed border-gray-400 dark:border-gray-600'}
+                                    ${isCorrect ? '!bg-green-100 !border-green-500 !text-green-700 dark:!bg-green-900 dark:!border-green-600 dark:!text-green-200' : ''}
+                                    ${letter && letter === phraseWithSpaces[index] ? '!border-green-500 dark:!border-green-400' : ''}
+                                    ${letter && letter !== phraseWithSpaces[index] ? '!border-red-500 dark:!border-red-400' : ''}
                                 `}
                             >
                                 {letter}
@@ -188,7 +188,7 @@ export const Scrabble = ({
                                 <div
                                     key={`scrambled-${index}`}
                                     onClick={() => selectLetter(letter, index)}
-                                    className="w-10 h-10 flex items-center justify-center bg-yellow-100 border-2 border-yellow-400 uppercase font-bold text-lg cursor-pointer hover:bg-yellow-200 transition-colors duration-200 rounded"
+                                    className="w-10 h-10 flex items-center justify-center bg-yellow-100 border-2 border-yellow-400 uppercase font-bold text-lg cursor-pointer hover:bg-yellow-200 transition-colors duration-200 rounded dark:bg-yellow-900 dark:border-yellow-700 dark:text-yellow-200 dark:hover:bg-yellow-800"
                                 >
                                     {letter}
                                 </div>
@@ -199,7 +199,7 @@ export const Scrabble = ({
 
                 <div className="flex flex-col items-center gap-4">
                     {isCorrect && (
-                        <div className="text-green-600 font-bold text-lg animate-pulse">
+                        <div className="text-green-600 font-bold text-lg animate-pulse dark:text-green-400">
                             {phrase} - Correct!
                         </div>
                     )}
@@ -207,7 +207,7 @@ export const Scrabble = ({
                     <div className="flex gap-3">
                         <button
                             onClick={resetGame}
-                            className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition text-sm font-medium"
+                            className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition text-sm font-medium dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
                         >
                             Reset Game
                         </button>
@@ -215,7 +215,7 @@ export const Scrabble = ({
                         {!isCorrect && (
                             <button
                                 onClick={solveGame}
-                                className="px-4 py-2 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 transition text-sm font-medium"
+                                className="px-4 py-2 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 transition text-sm font-medium dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800"
                             >
                                 Solve
                             </button>

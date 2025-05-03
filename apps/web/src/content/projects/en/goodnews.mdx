@@ -8,32 +8,40 @@ techstack:
   - FAISS
   - Flask
 selected: true
+role: Developer & Designer
+tools:
+  - React
+  - Python (Flask)
+  - MongoDB
+  - FAISS
+  - OpenAI GPT
+  - Figma (Assumed for UI/UX)
 ---
 
 <Image
   src='/images/projects/goodnews/HP1.png'
   width={600}
   height={400}
-  alt='Homepage with MainStory and NewStories sections'
+  alt='GoodNews Interface Example'
+  caption='The GoodNews feed delivers uplifting stories.'
 />
 
-## Overview
+## The Problem: News Doesn't Have to Be Exhausting
 
-Good News is a refreshing take on the daily news cycle, designed to complement your usual news consumption with a dose of positivity. In a world where news platforms often bombard us with negative, polarizing, and depressing stories to drive views and engagement, Good News aims to balance the emotional scale. Good News focuses on delivering uplifting news about new technology, healthcare breakthroughs, and useful tips on time management and productivity, among others. It's a chance to bring more hope into our daily lives.
+Most news platforms focus on conflict, disasters, and negativity. In a world often bombarded with polarizing and depressing stories designed to drive views, staying informed can feel stressful and draining, leading many to avoid the news altogether. My goal with GoodNews was simple: what if staying updated could feel hopeful instead?
 
-Good News leverages a powerful tech stack comprising React for the frontend, Python for the backend, MongoDB for database management, and FAISS for efficient similarity search in high-dimensional spaces. This combination enables us to offer a smooth and responsive user experience while effectively managing and delivering personalized content.
+## What I Built
 
-## Frontend Features
+GoodNews is a web app designed as a refreshing take on the daily news cycle. It uses AI to find and share uplifting stories, focusing on progress, solutions, and positive events—like breakthroughs in technology and healthcare, or useful productivity tips. It aims to complement your usual news consumption with a dose of positivity and balance the emotional scale.
 
-- **Homepage Component**: The entry point of Good News, featuring three child components for diversified news consumption:
-  - **MainStory**: Highlights the most impactful positive news story of the moment.
-  - **NewStories**: A dynamic feed of the latest uplifting news stories.
-  - **TrendingStories**: Stories gaining popularity for their positive impact and inspirational content.
-- **NewsByTopic**: A dedicated tab showcasing a grid of articles on user-selected topics. Currently, this section hosts one tab, with plans to expand as users customize their interests.
-- **Account Tab**: A future addition aimed at personalizing the user experience further, allowing users to select and modify their news topic preferences.
+**Key Features:**
 
-**Homepage Component with MainStory and NewStories**  
-The top half of the homepage include the main story (i.e. breaking news) and new stories.
+- **Curated Homepage:** Features the most impactful positive news (`MainStory`), a feed of the latest uplifting articles (`NewStories`), and trending positive content (`TrendingStories`).
+- **Focused Topics:** The `NewsByTopic` section allows users to explore articles based on specific areas of interest (with plans to expand customization).
+- **Personalization (Planned):** An upcoming `Account Tab` will allow users to select and modify topic preferences for a tailored feed.
+- **AI-Powered Filtering:** Leverages sentiment analysis to ensure only positive news reaches the platform.
+
+**Homepage Example (Main & New Stories)**
 
 <Image
   src='/images/projects/goodnews/HP1.png'
@@ -42,8 +50,7 @@ The top half of the homepage include the main story (i.e. breaking news) and new
   alt='Homepage with MainStory and NewStories sections'
 />
 
-**Homepage Component with TrendingStories**  
-The bottom half of the homepage includes the trending stories
+**Homepage Example (Trending Stories)**
 
 <Image
   src='/images/projects/goodnews/HP2.png'
@@ -52,8 +59,7 @@ The bottom half of the homepage includes the trending stories
   alt='Homepage with TrendingStories section'
 />
 
-**NewsByTopic Example**  
-This is an example of how a NewsByTopic tab would look like. If their interests were in Sports they would see a grid of several articles relating to sports.
+**NewsByTopic Example**
 
 <Image
   src='/images/projects/goodnews/Sports1.png'
@@ -62,24 +68,52 @@ This is an example of how a NewsByTopic tab would look like. If their interests 
   alt='NewsByTopic view showing sports articles'
 />
 
-## Backend Functionality
+## How It Works
 
-Our backend is built on Flask, leveraging the CORS library for handling cross-origin requests, and MongoDB for storing and managing news articles. The backend also incorporates OpenAI's GPT models for sentiment analysis and FAISS for efficient indexing and similarity search of high-dimensional vectors, allowing us to deliver the most relevant and uplifting news to our users.
+The application retrieves articles from various reputable sources. Our backend, built with Python (Flask) and MongoDB, processes these articles:
 
-### Key Operations
+1.  **AI Sentiment Analysis:** Each article is evaluated using OpenAI's GPT models. Only those with a positive sentiment score are kept.
+2.  **Indexing for Relevance:** Positive articles are indexed using FAISS for efficient similarity searching based on content and positivity.
+3.  **Delivery via API:** React frontend fetches curated news via dedicated endpoints:
+    - `/getLatest`: Delivers the newest positive stories.
+    - `/getMostRelevant`: Provides stories sorted by positive sentiment score.
+    - `/getMostRelevant_byQuery`: Allows searching for positive news on specific topics.
 
-- **Sentiment Analysis**: Currently, we focus on filtering news based on a sentiment score to ensure only positive news makes it to our platform. Each article's sentiment is evaluated, and only those with a positive score are stored and indexed.
-- **Article Retrieval and Indexing**: Articles are fetched from various reputable sources, processed, and indexed using FAISS for efficient retrieval based on relevance to user interests and sentiment positivity.
-- **Personalized News Feed**: In the next development phase, we plan to introduce personalization features, allowing users to select their interests and receive news tailored to their preferences.
+## Behind the Scenes
 
-### API Endpoints
+Building GoodNews involved integrating several technologies:
 
-- `/getLatest`: Fetches the latest positive news stories, sorted by date.
-- `/getMostRelevant`: Retrieves the most relevant positive news stories, sorted by sentiment score.
-- `/getMostRelevant_byQuery`: Allows users to search for news based on specific topics or interests, returning the most relevant and positive stories.
+- **Frontend:** React for a responsive user interface.
+- **Backend:** Python (Flask) to handle logic and API requests, with CORS support.
+- **Database:** MongoDB to store and manage news articles.
+- **AI & Search:** OpenAI GPT models for sentiment analysis and FAISS for efficient vector similarity search.
 
-## Future Directions
+A key technical challenge was refining the sentiment analysis to accurately filter for genuinely positive content while excluding superficially positive but ultimately negative or sensational stories. The focus remains on delivering meaningful, uplifting news.
 
-While Good News is currently focused on delivering general positive news content based on sentiment analysis, our roadmap includes introducing user personalization features. We aim to allow users to curate their news feed by selecting topics they are most interested in, thereby enhancing the relevance and impact of the positive news we deliver. Additionally, we plan to incorporate more advanced machine learning models to improve the accuracy of sentiment analysis and content personalization, making Good News an indispensable part of our users' daily news routine.
+## What I Learned (In Progress)
+
+Developing GoodNews highlighted several key insights:
+
+- **The Need for Positivity:** There's a strong desire for news experiences that don't contribute to stress and anxiety.
+- **AI's Role in Curation:** Sentiment analysis is a powerful tool for filtering content, but requires careful tuning.
+- **Personalization is Key:** Users value the ability to tailor content to their specific interests (reinforcing the plan for the Account Tab).
+
+## Results (Projected)
+
+While formal user testing metrics are forthcoming, the goal is to achieve:
+
+- Reduced news-related stress for users.
+- Increased engagement with positive content compared to traditional news sources.
+- Demonstrate the viability of a positivity-focused news platform.
+
+## Next Steps
+
+Our roadmap focuses on enhancing the user experience and the quality of curation:
+
+- **Implement User Personalization:** Launch the `Account Tab` allowing users to select topics they care about.
+- **Advanced AI Models:** Incorporate more sophisticated ML models to improve sentiment analysis accuracy and personalization relevance.
+- **Expand Content Sources:** Integrate a wider variety of reputable sources for diverse positive news.
+
+We aim to make GoodNews an indispensable part of a balanced daily news routine.
 
 Good News is more than just an app; it's a movement towards a more balanced and positive news consumption experience. Join us in changing the way we consume news, one positive story at a time.
