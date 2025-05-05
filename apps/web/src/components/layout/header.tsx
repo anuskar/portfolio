@@ -16,7 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     const changeBackground = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 50) {
         setIsScrolled(true)
       } else {
         setIsScrolled(false)
@@ -31,8 +31,8 @@ const Header = () => {
   return (
     <motion.header
       className={cn(
-        'bg-background/30 shadow-xs fixed inset-x-0 top-4 z-40 mx-auto flex h-[60px] max-w-5xl items-center justify-between rounded-2xl px-8 saturate-100 backdrop-blur-[10px] transition-colors',
-        isScrolled && 'bg-background/80'
+        'bg-background/30 shadow-xs fixed inset-x-0 top-4 z-40 mx-auto flex h-[60px] max-w-5xl items-center justify-between rounded-2xl px-8 saturate-100 backdrop-blur-[10px] transition-all duration-200',
+        isScrolled && 'opacity-0 pointer-events-none'
       )}
       initial={{
         y: -100

@@ -1,5 +1,5 @@
 ---
-name: Good News
+name: GoodNews – A Brighter Way to Stay Informed
 description: A refreshing take on the daily news cycle
 techstack:
   - React
@@ -16,105 +16,127 @@ tools:
   - MongoDB
   - FAISS
   - OpenAI GPT
-  - Figma (Assumed for UI/UX)
+  - Figma
 ---
 
 <Image
-  src='/images/projects/goodnews/HP1.png'
+  src='/images/projects/goodnews/cover.png'
   width={600}
   height={400}
   alt='GoodNews Interface Example'
-  caption='The GoodNews feed delivers uplifting stories.'
+  caption='The GoodNews feed adapts to your preferences and mood.'
 />
 
 ## The Problem: News Doesn't Have to Be Exhausting
 
-Most news platforms focus on conflict, disasters, and negativity. In a world often bombarded with polarizing and depressing stories designed to drive views, staying informed can feel stressful and draining, leading many to avoid the news altogether. My goal with GoodNews was simple: what if staying updated could feel hopeful instead?
-
-## What I Built
-
-GoodNews is a web app designed as a refreshing take on the daily news cycle. It uses AI to find and share uplifting stories, focusing on progress, solutions, and positive events—like breakthroughs in technology and healthcare, or useful productivity tips. It aims to complement your usual news consumption with a dose of positivity and balance the emotional scale.
-
-**Key Features:**
-
-- **Curated Homepage:** Features the most impactful positive news (`MainStory`), a feed of the latest uplifting articles (`NewStories`), and trending positive content (`TrendingStories`).
-- **Focused Topics:** The `NewsByTopic` section allows users to explore articles based on specific areas of interest (with plans to expand customization).
-- **Personalization (Planned):** An upcoming `Account Tab` will allow users to select and modify topic preferences for a tailored feed.
-- **AI-Powered Filtering:** Leverages sentiment analysis to ensure only positive news reaches the platform.
-
-**Homepage Example (Main & New Stories)**
+Most news platforms focus on conflict, disasters, and negativity. For many people, this creates stress and makes them avoid staying informed altogether. My goal with GoodNews was simple: what if staying updated could feel hopeful and bring actual joy instead of bringing out more anxiety? It is not a replacement to current news sources just an aggregator of positive news to highlight things that are overshadowed by negative news.
 
 <Image
   src='/images/projects/goodnews/HP1.png'
   width={600}
   height={400}
-  alt='Homepage with MainStory and NewStories sections'
+  alt='Contrast between traditional news and GoodNews'
+  caption='Contrast between traditional news and GoodNews.'
 />
 
-**Homepage Example (Trending Stories)**
+## What I Built
+
+GoodNews is a web app that uses AI to find and share uplifting stories from trusted sources. It focuses on progress, solutions, and underreported positive events—like breakthroughs in science or community-driven projects.
+
+**Key features:**
+- **Personalized feed:** Pick topics you care about (e.g., climate wins, education).
+- **Quick summaries:** Get the key points in 4 sentences.
+- **Mood settings:** Switch between "Relaxed," "Inspired," or "Balanced" modes.
+- **Transparency dashboard:** See where stories come from and how they're verified.
+
+<Image
+  src='/images/projects/goodnews/insights.png'
+  width={600}
+  height={400}
+  alt='Users adjust their feed based on how they want to feel'
+  caption='Users adjust their feed based on how they want to feel.'
+/>
+
+## How It Works
+
+**Personalized:**
+1. **AI filters stories:** The app scans 100+ news sources and filters negative or sensational content. Every minute.
+2. **Stories are embedded:** A story summary gets generated and embedded, so that users can preview and can find relevant stories for them.
+3. **You choose the topics:** Write what you want to know about in natural language, up to 5 topics.
+4. **Enjoy Good News:** Once you've chosen the topics, those are the news you see, and you can change them whenever.
+
+<Image
+  src='/images/projects/goodnews/choices.png'
+  width={600}
+  height={400}
+  alt='Topic selection interface'
+  caption='Stories are filtered, personalized, and shared.'
+/>
+
+## Behind the Scenes
+
+Building GoodNews required:
+
+- **Sentiment analysis tools** to detect uplifting language.
+- **Choose your topics** so that everyone gets exactly what they want.
+- **Rag based matching** to topics using query expansion to have the most semantically correct matches.
+
+<Image
+  src='/images/projects/goodnews/query-expansion.png'
+  width={600}
+  height={400}
+  alt='Query expansion for semantic matching'
+  caption='Semantic matching technology for accurate topic relevance.'
+/>
+
+- **Metrics of topics** of interest and positivity to see where you got joy from and figure out new topics that may interest you.
+- **No data collected, ever** to signup you just get a uuid that you need to remember so that your topics stay the same, no email, no phone, just good news.
+
+<Image
+  src='/images/projects/goodnews/no-tracking.png'
+  width={600}
+  height={400}
+  alt='No tracking login screen'
+  caption='Simple login with UUID - no personal data collected.'
+/>
+
+## What I Learned
+
+Not everyone wants positivity: A lot of people who tried it went back to their original news sources, not because they didn't like the content they were seeing, but because the anxiety that is commonly introduced in the normal news media is the thing that makes it so addicting.
 
 <Image
   src='/images/projects/goodnews/HP2.png'
   width={600}
   height={400}
-  alt='Homepage with TrendingStories section'
+  alt='User engagement metrics'
+  caption='Clear sourcing built trust and kept users longer.'
 />
 
-**NewsByTopic Example**
+## Navigation Experience
+
+The streamlined navigation keeps the focus on content that matters.
+
+<Image
+  src='/images/projects/goodnews/navbar.png'
+  width={600}
+  height={400}
+  alt='Navigation bar of GoodNews'
+  caption='Clean navigation helps users focus on content.'
+/>
+
+## Content Categories
+
+Users can browse specific topics like sports to see only positive stories in their areas of interest.
 
 <Image
   src='/images/projects/goodnews/Sports1.png'
   width={600}
   height={400}
-  alt='NewsByTopic view showing sports articles'
+  alt='Sports category view'
+  caption='Category-specific views keep content relevant and engaging.'
 />
 
-## How It Works
+## Tools Used
+Figma, React, Python (for sentiment analysis prototypes), OpenAI
 
-The application retrieves articles from various reputable sources. Our backend, built with Python (Flask) and MongoDB, processes these articles:
-
-1.  **AI Sentiment Analysis:** Each article is evaluated using OpenAI's GPT models. Only those with a positive sentiment score are kept.
-2.  **Indexing for Relevance:** Positive articles are indexed using FAISS for efficient similarity searching based on content and positivity.
-3.  **Delivery via API:** React frontend fetches curated news via dedicated endpoints:
-    - `/getLatest`: Delivers the newest positive stories.
-    - `/getMostRelevant`: Provides stories sorted by positive sentiment score.
-    - `/getMostRelevant_byQuery`: Allows searching for positive news on specific topics.
-
-## Behind the Scenes
-
-Building GoodNews involved integrating several technologies:
-
-- **Frontend:** React for a responsive user interface.
-- **Backend:** Python (Flask) to handle logic and API requests, with CORS support.
-- **Database:** MongoDB to store and manage news articles.
-- **AI & Search:** OpenAI GPT models for sentiment analysis and FAISS for efficient vector similarity search.
-
-A key technical challenge was refining the sentiment analysis to accurately filter for genuinely positive content while excluding superficially positive but ultimately negative or sensational stories. The focus remains on delivering meaningful, uplifting news.
-
-## What I Learned (In Progress)
-
-Developing GoodNews highlighted several key insights:
-
-- **The Need for Positivity:** There's a strong desire for news experiences that don't contribute to stress and anxiety.
-- **AI's Role in Curation:** Sentiment analysis is a powerful tool for filtering content, but requires careful tuning.
-- **Personalization is Key:** Users value the ability to tailor content to their specific interests (reinforcing the plan for the Account Tab).
-
-## Results (Projected)
-
-While formal user testing metrics are forthcoming, the goal is to achieve:
-
-- Reduced news-related stress for users.
-- Increased engagement with positive content compared to traditional news sources.
-- Demonstrate the viability of a positivity-focused news platform.
-
-## Next Steps
-
-Our roadmap focuses on enhancing the user experience and the quality of curation:
-
-- **Implement User Personalization:** Launch the `Account Tab` allowing users to select topics they care about.
-- **Advanced AI Models:** Incorporate more sophisticated ML models to improve sentiment analysis accuracy and personalization relevance.
-- **Expand Content Sources:** Integrate a wider variety of reputable sources for diverse positive news.
-
-We aim to make GoodNews an indispensable part of a balanced daily news routine.
-
-Good News is more than just an app; it's a movement towards a more balanced and positive news consumption experience. Join us in changing the way we consume news, one positive story at a time.
+This project reminded me that technology can shape not just what we know, but how we feel. Designing for positivity isn't about ignoring problems—it's about highlighting the ways people are solving them.
