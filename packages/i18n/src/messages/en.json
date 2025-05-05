@@ -1,0 +1,174 @@
+{
+  "about": {
+    "description": "👋 Hi there! I am Anuska, a type A Product Manager with Frontend/AI experience.",
+    "title": "About"
+  },
+  "admin": {
+    "nav": {
+      "comments": "Comments",
+      "dashboard": "Dashboard",
+      "general": "General",
+      "users": "Users"
+    },
+    "page-header": {
+      "comments": {
+        "description": "Manage comments from users",
+        "title": "Comments"
+      },
+      "users": {
+        "description": "Manage users of the system",
+        "title": "Users"
+      }
+    },
+    "table": {
+      "comments": {
+        "body": "Body",
+        "createdAt": "Created At",
+        "failed-to-fetch-comments-data": "Failed to fetch comments data. Please refresh the page.",
+        "filter-body": "Filter body...",
+        "filter-userId": "Filter user ID...",
+        "type": "Type",
+        "userId": "User ID"
+      },
+      "users": {
+        "email": "Email",
+        "failed-to-fetch-users-data": "Failed to fetch users data. Please refresh the page.",
+        "filter-names": "Filter names...",
+        "name": "Name",
+        "role": "Role"
+      }
+    }
+  },
+  "blog": {
+    "description": "My personal website and blog where I share my thoughts on various topics including tutorials, notes, and personal experiences. As a full-stack engineer from Hong Kong, I started learning web development as a hobby in December 2020. I use Next.js for building websites, GitHub for code hosting, and Vercel for deployment. Explore my site to learn more about my Journey and discover some of the web development resources that have inspired me.",
+    "footer": {
+      "edit-on-github": "Edit on GitHub",
+      "last-updated": "Last updated: {date}"
+    },
+    "header": {
+      "published-on": "Published on",
+      "views": "Views",
+      "written-by": "Written by"
+    },
+    "on-this-page": "On this page",
+    "title": "Blog"
+  },
+  "command-menu": {
+    "actions": {
+      "copy-link": "Copy link",
+      "source-code": "Source code"
+    },
+    "groups": {
+      "general": "General",
+      "social": "Social"
+    },
+    "no-results": "No results found.",
+    "open-menu": "Open command menu",
+    "placeholder": "Type a command or search",
+    "trigger": {
+      "open-command": "Open Command",
+      "open-link": "Open Link"
+    }
+  },
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "error": "Error",
+    "views": "{count, plural, =1 {# view} other {# views}}"
+  },
+  "component": {
+    "filtered-posts": {
+      "no-posts-found": "No posts found",
+      "placeholder": "Search articles"
+    },
+    "go-to-homepage": "Go to homepage"
+  },
+  "dialog": {
+    "sign-in": {
+      "continue-with": "Continue with {provider}",
+      "description": "to continue to honghong.me"
+    }
+  },
+  "error": {
+    "something-went-wrong": "Something went wrong!",
+    "try-again": "Try again"
+  },
+  "homepage": {
+    "about-me": {
+      "coding-hours": "Coding hours",
+      "connect": "Connect",
+      "fav-framework": "Fav. framework",
+      "location": "Hong Kong",
+      "more": "Know more about me",
+      "stacks": "Stacks",
+      "title": "About Me"
+    },
+    "get-in-touch": {
+      "description": "Feel free to reach out to me!",
+      "image-alt": "Me sit in front of my desk and coding",
+      "title": "Any questions about Next.js?"
+    },
+    "hero": {
+      "amazing": "Amazing",
+      "attractive": "Attractive",
+      "fantastic": "Fantastic",
+      "location-timezone": "Hong Kong • UTC/GMT +8",
+      "stunning": "Stunning",
+      "title-bottom": "React",
+      "title-middle-left": "building",
+      "title-middle-right": "websites using",
+      "title-top": "I'm Nelson, a Full Stack Engineer"
+    },
+    "latest-articles": {
+      "card": "Article",
+      "more": "See all articles",
+      "title": "Latest Articles"
+    },
+    "selectedProjects": {
+      "card": "Project",
+      "more": "See all project",
+      "title": "Selected Projects"
+    }
+  },
+  "hook": {
+    "copy-to-clipboard": {
+      "copied": "Copied to clipboard!",
+      "error": "Unable to copy to clipboard. Please try again!"
+    }
+  },
+  "layout": {
+    "about": "About",
+    "blog": "Blog",
+    "change-language": "Change language",
+    "facebook": "Facebook",
+    "github": "GitHub",
+    "home": "Home",
+    "instagram": "Instagram",
+    "links": "Links",
+    "projects": "Projects",
+    "skip-to-main-content": "Skip to main content",
+    "toggle-menu": "Toggle menu",
+    "youtube": "YouTube"
+  },
+  "mdx": {
+    "link-to-section": "Link to section"
+  },
+  "metadata": {
+    "site-description": "Anuska Rungta • 18 y/o • Student • Full Stack Engineer",
+    "site-title": "Anuska Rungta - A Full Stack Engineer"
+  },
+  "not-found": "Page Not Found!",
+  "projects": {
+    "description": "The list of my projects. Everything was made with ❤️.",
+    "title": "Projects",
+    "visit-website": "Visit Website"
+  },
+  "theme-toggle": {
+    "options": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System"
+    },
+    "toggle-theme": "Toggle theme"
+  }
+}
